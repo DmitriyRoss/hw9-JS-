@@ -1,0 +1,131 @@
+<html>
+
+<head>
+    <title>JAVASCRIPT HW3</title>
+</head>
+
+<body>
+    <script>
+        // ЗАДАНИЯ ДЛЯ РАЗМИНКИ!!!!!!)))
+
+        //1) Есть участок кода! обернуть в try catch нужный участок кода и выбросить ошибку если getResult возвращает undefined
+        try {
+        function getResult() {
+            var obj = {
+                name: 'Sergei',
+                lastName: 'Shakhov'
+            }
+            return
+            obj;
+        }
+        const a = getResult();
+        console.log('RESULT', a);
+        }
+        catch(err){
+            console.log('This is error:' + err)
+
+        }
+
+        //2) исправить код чтобы консоль логи показывали от 0 до 10, и написать почему сейчас выводит десять десяток!!
+        for (var i = 0; i < 10; i++) {
+            setTimeout(() => console.log(i), 0);
+        }
+        function edited() {
+            for (var i = 0; i < 10; i++) {
+            console.log(i);
+        }
+        }
+        function editedv2() {
+            for(var i = 0; i < 10; i++){
+            (function(i) {
+            setTimeout(function(){
+              console.log(i);
+            }, 0);
+           })(i);
+        }  
+        }
+        let explaining = 'Выводит десять десяток потому что из-за сет таймаута i улетает в event queue, и к моменту выполнения settimeout переменная i будет равна 10, так как к этому моменту цикл уже выполнится '
+        console.log(explaining);
+
+        // 3) Есть код!! В какой последовательности выполнится!
+        function getDatas() {
+            return [
+                {
+                    name: "Vasia"
+                },
+                {
+                    name: "Boria"
+                },
+                {
+                    name: "Misha"
+                },
+            ]
+        }
+        const res = getDatas();
+
+        console.log('RES', res);
+
+        setTimeout(() => console.log('settimeout1'), 100); 
+        setTimeout(() => console.log('settimeout'), 10); 
+        console.log('One'); 
+        console.log('two');
+        let result = 'Сет таймауты улетают в event queue, далее создается функция, переменная, три консоль лога, далее сеттаймаут без цифры один и за ним сеттаймаут1'
+        console.log(result)
+           
+        //4) Что выведет alert в setTimeOut
+        setTimeout(function () {
+            alert(i);
+        }, 100);
+        for (var i = 0; i < 1000000; i++) {
+        }
+        console.log('Алерт выведет 1000000 так как сет тайм аут улетит в event queue и сработает ПОСЛЕ цикла, а цикл за это время выполнится и его значение станет 100000')
+
+
+        // 5) Есть функция funct! Сделать из нее функцию конструктор которая создает обьект со свойствами name lastName
+        function funct(name, lastName) {
+            this.name = name;
+            this.lastName = lastName;
+        }
+        let obj = new funct('Dmitriy', 'Ross');
+        console.log(obj)
+        // 6) Создать функцию конструктор, которая принимает обьект и берет только lastName и position и создает обьект с этих свойств
+        function factory(obj) {
+            return {   
+                lastName: obj.lastName,
+                position: obj.position
+            };
+        }
+
+        let obj = new factory({ name: 'Sergei', lastName: 'Shakhov', height: 188, position: 'Software developer' });
+        console.log(obj);
+
+        // 7)  Создать функцию конструктор, которая принимает два свойства name, lastName конкатенирует их и сохраняет в замыкании в переменной fullName
+        // random свойства не будет в обьекте ОБРАТИТЕ ВНИМАНИЕ потому что есть return!! Если не было бы return то был бы обьект с одним свойством
+        function Factory(name, lastName) {
+         
+            this.fullName = name + '' + lastName
+        }
+        var a = new Factory('Boris', 'Britva');
+        console.log(a.fullname)
+
+        // 8) Есть код! Почему строчка с комментарием покажет {misha: NADUSHA}! Сделать так чтобы a.getObject(); вернул {misha: 'misha'}
+        // то есть должны быть независимые обьекты!!
+        function newFactory(obj) {
+            var object = obj;
+
+            return {
+                getObject: function() {
+                    return object;
+                }
+            };
+        }
+        var a = newFactory({misha: 'misha'});
+        var k = newFactory({})
+        k.misha = 'NADUSHA'; 
+        console.log(a.getObject())
+        console.log(k.misha)
+        
+    </script>
+</body>
+
+</html>
