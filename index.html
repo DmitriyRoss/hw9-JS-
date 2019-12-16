@@ -115,15 +115,13 @@
 
             return {
                 getObject: function() {
-                    return object;
+                    return {...object};
                 }
             };
         }
         var a = newFactory({misha: 'misha'});
-        var k = newFactory({})
+        var k = a.getObject()
         k.misha = 'NADUSHA'; 
-        console.log(a.getObject())
-        console.log(k.misha)
         
     </script>
 </body>
